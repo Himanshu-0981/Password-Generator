@@ -1,38 +1,56 @@
 const outputBox = document.querySelector(".output-box");
 const btn = document.querySelector(".btn");
 const alphabetCheck = document.querySelector(".alphabet input[type=checkbox]");
+const numberCheck = document.querySelector(".numbers input[type=checkbox]");
 const upperCaseCheck = document.querySelector(".uppercase input[type=checkbox]");
-console.dir(upperCaseCheck.checked);
+const passwordLength = document.querySelector('.length input[type=number]')
+const copyToClipBoard = document.querySelector('.copy-icon')
+console.log(passwordLength.value);
 
 const numbers = 1234567890;
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
-const alphabetArray = alphabet.split("");
-
+const allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ~`! @#$%^&*()_-+={[}]|:;<,>.?/";
 
 btn.addEventListener("click", () => {
     if (alphabetCheck.checked === true) {
-      const alphabetVar = alphabetGenerator(alphabetArray.slice(0,10));
-    outputBox.innerHTML = alphabetVar;
-  }else {
-    const randomValue = randomFunction();
-    outputBox.innerHTML = randomValue;
-  }
+        outputBox.innerHTML = generateString(alphabet, 10);
+
+    } else if (numberCheck.checked === true) {
+        outputBox.innerHTML = randomFunction();
+    }
+    else {
+        outputBox.innerHTML = generateString(allChar, passwordLength.value);
+        if (passwordLength.value > 15) {
+            passwordLength.value = 10;
+
+            return;
+        }
+    }
 });
 
 const randomFunction = () => {
-  return String(Math.floor(Math.random() * numbers));
+    return String(Math.floor(Math.random() * numbers));
 };
 
-const alphabetGenerator = (array) => {
-  let currentIndex = array.length;
-  let randomIndex;
-  while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-  return array.join("");
-};
+const generateString = (array, length) => {
+    let result = " ";
+    const charactersLength = array.length;
+    for (let i = 0; i < length; i++) {
+        result += array.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+const copyContent = async () => {
+    const willCopy = outputBox.value;
+    try {
+        await navigator.clipboard.writeText(willCopy);
+        console.log(`you copied ${willCopy}`);
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
+
+copyToClipBoard.addEventListener('click', () => {
+    copyContent();
+})

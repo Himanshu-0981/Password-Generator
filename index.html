@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="./script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="container">
+        <div class="output-container">
+          <p class="output-box" >ZIOENGDGF </p>
+          <div>
+            <i class="fa-regular fa-clipboard copy-icon"></i>
+          </div>
+        </div>
+        <div class="divs length">
+          <p>length</p>
+          <input type="number" value="10" />
+        </div>
+        <div class="divs uppercase">
+          <p>Uppercase</p>
+          <input type="checkbox" />
+        </div>
+        <div class="divs lowercase">
+          <p>Lowercase</p>
+          <input type="checkbox" />
+        </div>
+        <div class="divs numbers">
+          <p>Include numbers</p>
+          <input type="checkbox" />
+        </div>
+        <div class="divs alphabet">
+          <p>Include Alphabet</p>
+          <input type="checkbox" />
+        </div>
+        <div>
+          <button class="btn">Generate Password</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
